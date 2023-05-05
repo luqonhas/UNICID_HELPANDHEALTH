@@ -1,15 +1,30 @@
-<?php 
-  session_start();
-  if(isset($_SESSION['unique_id'])){
-    header("location: users.php");
-  }
+<!-- PÁGINA DO CADASTRO -->
+
+<?php
+// Inicia uma sessão de requisições com POST ou GET, possibilitando que cadastre ou faça login, ou até mesmo envie alguma informação para o banco dados
+session_start();
+
+// Verifica se já existe uma sessão existente
+if (isset($_SESSION['unique_id'])) {
+  // Caso exista, o usuário é redirecionado para a tela do Chat
+  header("location: chats.php");
+}
 ?>
 
-<?php include_once "header.php"; ?>
+<!-- A componente do head (início do HTML) -->
+<?php include_once "compontents/head.php"; ?>
+
 <body>
   <div class="wrapper2">
     <section class="form signup">
-    <header><p>PSYQWEB</p><div class="cssload-coffee"></div></header>
+
+      <!-- Onde está o nome e a caneca -->
+      <header>
+        <p>Help&Health</p>
+        <div class="cssload-coffee"></div>
+      </header>
+
+      <!-- Onde está todo formulário com os inputs que serão enviados para o banco de dados -->
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>
         <div class="name-details">
@@ -39,12 +54,16 @@
           <input type="submit" name="submit" value="Entrar">
         </div>
       </form>
+
       <div class="link">Já possui cadastro? <a href="login.php">Login</a></div>
     </section>
   </div>
 
+  <!-- Função JS que faz com que apareça ou não a senha -->
   <script src="javascript/pass-show-hide.js"></script>
+  <!-- Função JS que faz o cadastro do usuário -->
   <script src="javascript/signup.js"></script>
 
 </body>
+
 </html>

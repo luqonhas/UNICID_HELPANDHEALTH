@@ -1,11 +1,20 @@
-<?php 
+<!-- PÁGINA DAS CONVERSAS (CHATS) -->
+
+<?php
+  // Inicia uma sessão de requisições com POST ou GET, possibilitando que cadastre ou faça login, ou até mesmo envie alguma informação para o banco dados
   session_start();
+  
+  // Inclui um componente com os dados disponíveis para logar no banco de dados
   include_once "php/config.php";
-  if(!isset($_SESSION['unique_id'])){
-    header("location: login.php");
+  
+  // Verifica se já existe uma sessão existente com algum usuário
+  if (isset($_SESSION['unique_id'])) {
+    // Caso exista, o usuário é redirecionado para a tela do Chat
+    header("location: chats.php");
   }
 ?>
-<?php include_once "header.php"; ?>
+
+<?php include_once "compontents/head.php"; ?>
 <body>
   <div class="wrapper">
     <section class="users">
