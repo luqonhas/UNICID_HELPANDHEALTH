@@ -6,13 +6,13 @@ session_start();
 
 // Verifica se já existe uma sessão existente
 if (isset($_SESSION['unique_id'])) {
-  // Caso exista, o usuário é redirecionado para a tela do Chat
-  header("location: chats.php");
+  // Caso exista, o usuário é redirecionado para a página das Conversas (Chats)
+  header("location: login.php");
 }
 ?>
 
 <!-- A componente do head (início do HTML) -->
-<?php include_once "compontents/head.php"; ?>
+<?php include_once "components/head.php"; ?>
 
 <body>
   <div class="wrapper2">
@@ -62,7 +62,7 @@ if (isset($_SESSION['unique_id'])) {
   <!-- Função JS que faz com que apareça ou não a senha -->
   <script src="javascript/pass-show-hide.js"></script>
   <!-- Função JS que faz o cadastro do usuário -->
-  <script src="javascript/signup.js"></script>
+  <script src="javascript/cadastro.js"></script>
 
 </body>
 

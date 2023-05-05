@@ -1,7 +1,11 @@
+// Seleciona a barra de pesquisa
 const searchBar = document.querySelector(".search input"),
+// Seleciona o botão de pesquisa
 searchIcon = document.querySelector(".search button"),
+// Seleciona o campo da lista de usuários (onde ficará as conversas)
 usersList = document.querySelector(".users-list");
 
+// Se clicar no ícone de lupa... Faz umas animações
 searchIcon.onclick = ()=>{
   searchBar.classList.toggle("show");
   searchIcon.classList.toggle("active");
@@ -33,6 +37,7 @@ searchBar.onkeyup = ()=>{
   xhr.send("searchTerm=" + searchTerm);
 }
 
+// Pesquisa todas as conversas após 500 milisegundos que o usuário acessar a página e preenche o campo da lista de usuários (conversas)
 setInterval(() =>{
   let xhr = new XMLHttpRequest();
   xhr.open("GET", "php/chats.php", true);

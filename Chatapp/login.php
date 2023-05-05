@@ -6,13 +6,13 @@ session_start();
 
 // Verifica se já existe uma sessão existente com algum usuário
 if (isset($_SESSION['unique_id'])) {
-  // Caso exista, o usuário é redirecionado para a tela do Chat
+  // Caso exista, o usuário é redirecionado para a página das Conversas (Chats)
   header("location: chats.php");
 }
 ?>
 
 <!-- A componente do head (início do HTML) -->
-<?php include_once "compontents/head.php"; ?>
+<?php include_once "components/head.php"; ?>
 
 <body>
   <div class="wrapper2">

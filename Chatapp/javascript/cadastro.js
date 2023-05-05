@@ -13,7 +13,7 @@ form.onsubmit = (e)=>{
 continueBtn.onclick = ()=>{
     let xhr = new XMLHttpRequest();
     // Envia uma requisição para a função PHP de cadastro
-    xhr.open("POST", "php/signup.php", true);
+    xhr.open("POST", "php/cadastro.php", true);
 
     xhr.onload = ()=>{
       if(xhr.readyState === XMLHttpRequest.DONE){

@@ -27,6 +27,7 @@ continueBtn.onclick = ()=>{
                 location.href = "chats.php";
               }else{
                 errorText.style.display = "block";
+                // Retorna uma mensagem de erro
                 errorText.textContent = data;
               }
           }
@@ -35,19 +36,3 @@ continueBtn.onclick = ()=>{
     let formData = new FormData(form);
     xhr.send(formData);
 }
-const progressBar = document.querySelector('.progress-bar');
-const submitBtn = document.querySelector('input[type="submit"]');
-
-submitBtn.addEventListener('click', function() {
-  progressBar.style.display = 'block';
-  let value = 0;
-  let progressInterval = setInterval(function() {
-    if (value >= 100) {
-      clearInterval(progressInterval);
-      window.location.href = 'chats.php';
-    } else {
-      value++;
-      progressBar.value = value;
-    }
-  }, 30);
-});

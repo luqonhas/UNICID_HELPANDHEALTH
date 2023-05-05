@@ -1,5 +1,8 @@
 <?php
+    // Inicia uma sessão de requisições com POST ou GET, possibilitando que cadastre ou faça login, ou até mesmo envie alguma informação para o banco dados
     session_start();
+
+    // Inclui um componente com os dados disponíveis para logar no banco de dados
     include_once "config.php";
 
     // Criando variáveis de cada informação dos inputs da página de "Cadastro":
