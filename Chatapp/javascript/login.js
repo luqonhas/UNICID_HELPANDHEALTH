@@ -1,38 +1,147 @@
-// Seleciona o formulário do HTML com todos os inputs e o botão de cadastrar
-const form = document.querySelector(".login form"),
-// Seleciona o botão de cadastro dentro do formulário HTML
-continueBtn = form.querySelector(".button input"),
-// Seleciona o campo de erro dentro do formulário HTML
-errorText = form.querySelector(".error-text");
+// Inicializa o Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAJiT7L-tuDBbGyJLsfMGRgc8L7-w9ixFg",
+  authDomain: "chatapp-50d89.firebaseapp.com",
+  databaseURL: "https://chatapp-50d89-default-rtdb.firebaseio.com",
+  projectId: "chatapp-50d89",
+  storageBucket: "chatapp-50d89.appspot.com",
+  messagingSenderId: "57837999927",
+  appId: "1:57837999927:web:ca126f2bc6030ca3f5ecb2",
+};
 
-form.onsubmit = (e)=>{
-    e.preventDefault();
+firebase.initializeApp(firebaseConfig);
+
+// Cria uma referência para o banco de dados
+var database = firebase.database();
+
+// Cria uma referência para o nó que contém os usuários
+var usersRef = database.ref("users");
+
+async function ObtemChaveUsuarioFirebase(idUsuario) {
+  let chaveUsuario = "";
+
+  // Consulta para obter a referência da chave onde está o idUsuarioBuscado
+  const usuarioRef = await usersRef.orderByChild("id").equalTo(idUsuario).once("value");
+
+  usuarioRef.forEach(function (childSnapshot) {
+    chaveUsuario = childSnapshot.key;
+    return false; // Encerra o loop após encontrar a chave
+  });
+
+  return chaveUsuario;
 }
 
-// Quando clicar no botão de login...
-continueBtn.onclick = ()=>{
-    let xhr = new XMLHttpRequest();
-    // Envia uma requisição para a função PHP de cadastro
-    xhr.open("POST", "php/login.php", true);
+function BuscaArrayColunasFirebase(dados, nomeColunaBusca) {
+  buscas = [];
 
-    xhr.onload = ()=>{
-      if(xhr.readyState === XMLHttpRequest.DONE){
-          // Verifica se a requisição deu certo
-          if(xhr.status === 200){
-              let data = xhr.response;
+  // Itera sobre cada usuário encontrado
+  dados.forEach(function (dadoColuna) {
+    // Pega o valor da coluna buscada
+    var buscaEncontrada = dadoColuna.child(nomeColunaBusca).val();
 
-              // Verifica se a requisição foi um sucesso
-              if(data === "success"){
-                // Redireciona o usuário para a tela de chats
-                location.href = "chats.php";
-              }else{
-                errorText.style.display = "block";
-                // Retorna uma mensagem de erro
-                errorText.textContent = data;
-              }
-          }
+    // Adiciona a busca encontrada ao array
+    buscas.push(buscaEncontrada);
+  });
+
+  return buscas;
+}
+
+function BuscaColunaEspecificaFirebase(
+  dados,
+  nomeColunaBusca,
+  nomeColunaRetorno,
+  dadoCompara
+) {
+  retornoString = "";
+  retornoInt = 0;
+
+  // Itera sobre cada usuário encontrado
+  dados.forEach(function (dadoColuna) {
+    // Pega o valor da coluna buscada
+    var buscaEncontrada = dadoColuna.child(nomeColunaBusca).val();
+
+    // Verifica se a busca atual é o que precisa ser buscado
+    if (buscaEncontrada === dadoCompara) {
+      // Pega o valor da coluna que será retornada
+      retorno = dadoColuna.child(nomeColunaRetorno).val();
+
+      if (nomeColunaRetorno == "id") {
+        retornoInt = dadoColuna.child(nomeColunaRetorno).val();
+      } else if (nomeColunaRetorno == "email" || nomeColunaRetorno == "senha") {
+        retornoString = dadoColuna.child(nomeColunaRetorno).val();
       }
     }
-    let formData = new FormData(form);
-    xhr.send(formData);
+  });
+
+  if (retornoString != "") {
+    return retornoString;
+  } else {
+    return retornoInt;
+  }
+}
+
+// Função que faz a autenticação do usuário
+function Login(email, senha) {
+  if (email && senha) {
+    // Cria uma consulta para buscar todos os usuários
+    usersRef.once("value").then(async function (dados) {
+      // Cria um array para armazenar os e-mails buscados
+      var emailsBuscados = BuscaArrayColunasFirebase(dados, "email");
+      let idUsuarioBuscado = BuscaColunaEspecificaFirebase(
+        dados,
+        "email",
+        "id",
+        email
+      );
+
+      // Verifica se o e-mail existe no Firebase
+      if (emailsBuscados.includes(email)) {
+        // Cria um array para armazenar as senhas buscados
+        var senhasBuscadas = BuscaArrayColunasFirebase(dados, "senha");
+        let senhaUsuarioBuscado = BuscaColunaEspecificaFirebase(
+          dados,
+          "email",
+          "senha",
+          email
+        );
+
+        if (senhaUsuarioBuscado === senha) {
+          const status = "Online";
+          const chaveUsuario = await ObtemChaveUsuarioFirebase(idUsuarioBuscado);
+
+          // Atualiza o status do usuário no Firebase
+          const usuarioRef = usersRef.child(chaveUsuario);
+          usuarioRef.update({ status: status });
+
+          // Salva o id do usuário no localStorage
+          localStorage.setItem("idUsuario", idUsuarioBuscado);
+
+          // Redireciona o usuário para a página de chats
+          window.location.href = "chats.php";
+
+        } else {
+          alert("E-mail e/ou senha incorretos!");
+        }
+      } else {
+        alert("Usuário não encontrado!");
+      }
+    });
+  }
+}
+
+
+
+// Seleciona o formulário do HTML com todos os inputs e o botão de cadastrar
+const form = document.querySelector(".login form");
+
+// Adiciona um EventListener, que faz com que quando for feito uma requisição dentro desse formulário, possa ser utilizado numa função (como será utilizado abaixo)
+form.addEventListener("submit", envioForm);
+
+function envioForm(event) {
+  event.preventDefault();
+  // Captura os valores dos inputs
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("password").value;
+
+  Login(email, senha);
 }

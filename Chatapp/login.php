@@ -28,11 +28,11 @@ if (isset($_SESSION['unique_id'])) {
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="field input">
           <label>Email</label>
-          <input type="text" name="email" placeholder="E-mail..." required>
+          <input type="text" id="email" placeholder="E-mail..." required>
         </div>
         <div class="field input">
           <label>Senha</label>
-          <input type="password" name="password" placeholder="Senha..." required>
+          <input type="password" id="password" placeholder="Senha..." required>
           <i class="fas fa-eye"></i>
         </div>
         <div class="field button">
@@ -44,6 +44,8 @@ if (isset($_SESSION['unique_id'])) {
     </section>
   </div>
 
+  <!-- Função JS que faz com que o Firebase funcione -->
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <!-- Função JS que faz com que apareça ou não a senha -->
   <script src="javascript/pass-show-hide.js"></script>
   <!-- Função JS que faz o login do usuário -->

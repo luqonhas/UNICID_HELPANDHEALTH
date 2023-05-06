@@ -30,25 +30,25 @@ if (isset($_SESSION['unique_id'])) {
         <div class="name-details">
           <div class="field input">
             <label>Nome</label>
-            <input type="text" name="fname" placeholder="Nome..." required>
+            <input type="text" id="fname" placeholder="Nome..." required>
           </div>
           <div class="field input">
             <label>Sobrenome</label>
-            <input type="text" name="lname" placeholder="Sobrenome..." required>
+            <input type="text" id="lname" placeholder="Sobrenome..." required>
           </div>
         </div>
         <div class="field input">
           <label>Email</label>
-          <input type="text" name="email" placeholder="E-mail..." required>
+          <input type="text" id="email" placeholder="E-mail..." required>
         </div>
         <div class="field input">
           <label>Senha</label>
-          <input type="password" name="password" placeholder="Senha..." required>
+          <input type="password" id="password" placeholder="Senha..." required>
           <i class="fas fa-eye"></i>
         </div>
         <div class="field image">
           <label>Seleciona uma foto de perfil:</label>
-          <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+          <input type="file" id="image"  accept=".jpg,.jpeg,.png" required>
         </div>
         <div class="field button">
           <input type="submit" name="submit" value="Entrar">
@@ -59,6 +59,8 @@ if (isset($_SESSION['unique_id'])) {
     </section>
   </div>
 
+  <!-- Função JS que faz com que o Firebase funcione -->
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <!-- Função JS que faz com que apareça ou não a senha -->
   <script src="javascript/pass-show-hide.js"></script>
   <!-- Função JS que faz o cadastro do usuário -->

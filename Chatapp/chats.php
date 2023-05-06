@@ -8,10 +8,10 @@ session_start();
 include_once "php/config.php";
 
 // Verifica se já existe uma sessão existente com algum usuário
-if (!isset($_SESSION['unique_id'])) {
-  // Caso não exista mesmo, o usuário é redirecionado para a página de Login
-  header("location: login.php");
-}
+// if (!isset($_SESSION['unique_id'])) {
+//   // Caso não exista mesmo, o usuário é redirecionado para a página de Login
+//   header("location: login.php");
+// }
 ?>
 
 <!-- A componente do head (início do HTML) -->
