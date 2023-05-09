@@ -1,23 +1,21 @@
 <!-- PÁGINA DA CONVERSA (CHAT) -->
 
-<?php
-// Inicia uma sessão de requisições com POST ou GET, possibilitando que cadastre ou faça login, ou até mesmo envie alguma informação para o banco dados
-session_start();
+<!DOCTYPE html>
 
-// Inclui um componente com os dados disponíveis para logar no banco de dados
-include_once "php/config.php";
+<html lang="pt-br">
 
-// Verifica se naõ existe uma sessão existente com algum usuário
-if (!isset($_SESSION['unique_id'])) {
-  // Caso não exista mesmo, o usuário é redirecionado para a página de Login
-  header("location: login.php");
-}
-?>
-
-<!-- A componente do head (início do HTML) -->
-<?php include_once "components/head.php"; ?>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Help&Health</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+</head>
 
 <body>
+  <script src="utils/verification.js" defer></script>
+
   <div class="wrapper">
     <section class="chat-area">
 

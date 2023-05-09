@@ -1,0 +1,90 @@
+<!-- PÁGINA DO CADASTRO -->
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Help&Health</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <script src="utils/verification.js" defer></script>
+
+    <div class="wrapper2">
+      <section class="form signup">
+        <!-- Onde está o nome e a caneca -->
+        <header>
+          <p>Help&Health</p>
+          <div class="cssload-coffee"></div>
+        </header>
+
+        <!-- Onde está todo formulário com os inputs que serão enviados para o banco de dados -->
+        <form
+          action="#"
+          method="POST"
+          enctype="multipart/form-data"
+          autocomplete="off"
+        >
+          <div class="error-text"></div>
+          <div class="name-details">
+            <div class="field input">
+              <label>Nome</label>
+              <input type="text" id="fname" placeholder="Nome..." required />
+            </div>
+            <div class="field input">
+              <label>Sobrenome</label>
+              <input
+                type="text"
+                id="lname"
+                placeholder="Sobrenome..."
+                required
+              />
+            </div>
+          </div>
+          <div class="field input">
+            <label>Email</label>
+            <input type="text" id="email" placeholder="E-mail..." required />
+          </div>
+          <div class="field input">
+            <label>Senha</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Senha..."
+              required
+            />
+            <i class="fas fa-eye"></i>
+          </div>
+          <!-- <div class="field image">
+            <label>Seleciona uma foto de perfil:</label>
+            <input type="file" id="image" accept=".jpg,.jpeg,.png" required />
+          </div> -->
+          <div class="field button">
+            <input type="submit" name="submit" value="Entrar" />
+          </div>
+        </form>
+
+        <div class="link">
+          Já possui cadastro? <a href="login.html">Login</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Função JS que faz com que o Firebase funcione -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <!-- Função JS que faz com que o MD5 (criptografia de senha) funcione -->
+    <script src="utils/md5.min.js"></script>
+    <!-- Função JS que faz com que apareça ou não a senha -->
+    <script src="javascript/pass-show-hide.js"></script>
+    <!-- Função JS que faz o cadastro do usuário -->
+    <script src="javascript/cadastro.js"></script>
+  </body>
+</html>

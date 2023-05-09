@@ -96,16 +96,17 @@ function Login(email, senha) {
 
       // Verifica se o e-mail existe no Firebase
       if (emailsBuscados.includes(email)) {
-        // Cria um array para armazenar as senhas buscados
-        var senhasBuscadas = BuscaArrayColunasFirebase(dados, "senha");
+        // Busca a senha do usuário com o e-mail inserido
         let senhaUsuarioBuscado = BuscaColunaEspecificaFirebase(
           dados,
           "email",
           "senha",
           email
         );
+        // Criptografa a senha inserida
+        let senhaInseridaCriptografada = md5(senha);
 
-        if (senhaUsuarioBuscado === senha) {
+        if (senhaUsuarioBuscado === senhaInseridaCriptografada) {
           const status = "Online";
           const chaveUsuario = await ObtemChaveUsuarioFirebase(idUsuarioBuscado);
 
@@ -117,7 +118,7 @@ function Login(email, senha) {
           localStorage.setItem("idUsuario", idUsuarioBuscado);
 
           // Redireciona o usuário para a página de chats
-          window.location.href = "chats.php";
+          window.location.href = "chats.html";
 
         } else {
           alert("E-mail e/ou senha incorretos!");

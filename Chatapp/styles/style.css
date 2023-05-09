@@ -188,6 +188,7 @@ body{
 }
 .users header .logout{
   display: block;
+  cursor: pointer;
   background: rgb(204, 26, 26);
   color: #fff;
   outline: none;
@@ -428,6 +429,12 @@ body{
 .typing-area button.active{
   opacity: 1;
   pointer-events: auto;
+}
+.hide {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  display: none;
 }
 
 /* Responive media query */
