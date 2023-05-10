@@ -61,7 +61,7 @@ function BuscaArrayMensagensFirebase(
       objetoBusca.id != idUsuarioLogado
     ) {
       var objetoResultado = objetoBusca;
-      console.log(objetoResultado);
+
       // Adiciona a busca encontrada ao array
       buscas.push(objetoResultado);
     }
@@ -178,7 +178,7 @@ function preencheDados() {
 
       // ID do usuário logado em relação as mensagens
       var idMensagemEnviada = idUsuarioLogado;
-      var idMensagemRecebida = 0;
+      var idMensagemRecebida = "";
       var retornoHTML = "";
       var mensagemAmostra = "";
       var voce = "";
@@ -204,97 +204,160 @@ function preencheDados() {
           } else if (totalMensagens > 0) {
             var resultadoMensagem = "";
 
-            mensagensBuscadas.forEach(function (mensagem) {
-              resultadoMensagem = mensagem.mensagem;
-              idMensagemEnviada = mensagem.idMensagemEnviada;
-              if (resultadoMensagem.length > 28) {
-                mensagemAmostra = resultadoMensagem.substring(0, 28) + "...";
-              } else {
-                mensagemAmostra = resultadoMensagem;
-              }
+            mensagensBuscadas.forEach(function (mensagem, index) {
+              if (totalMensagens == ++index) {
 
-              if (mensagem.mensagem != "") {
-                if (typeof mensagem.idMensagemEnviada != undefined) {
-                  voce =
-                    idMensagemEnviada == mensagem.idMensagemEnviada
-                      ? "Você: "
-                      : "";
+                resultadoMensagem = mensagem.mensagem;
+                
+                if (resultadoMensagem.length > 28) {
+                  mensagemAmostra = resultadoMensagem.substring(0, 28) + "...";
                 } else {
-                  voce = "";
+                  mensagemAmostra = resultadoMensagem;
                 }
+  
+                if (mensagem.mensagem != "") {
+                  if (typeof mensagem.idMensagemEnviada != undefined) {
+                    voce =
+                      idUsuarioLogado == mensagem.idMensagemEnviada
+                        ? "Você: "
+                        : "";
+                  } else {
+                    voce = "";
+                  }
+                }
+  
+                if (
+                  BuscaColunaEspecificaFirebase(
+                    dados,
+                    "id",
+                    "status",
+                    mensagem.idMensagemEnviada
+                  ) == "Offline"
+                ) {
+                  offline = "offline";
+                } else {
+                  offline = "";
+                }
+  
+                if (idMensagemEnviada === idUsuarioLogado) {
+                  hide_me = "hide";
+                } else {
+                  hide_me = "";
+                }
+  
+                if (idUsuarioLogado != 87220752) {
+                  retornoHTML =
+                    '<a href="chat.html?user_id=' +
+                    87220752 +
+                    '">' +
+                    '<div class="content">' +
+                    "<img src=" +
+                    BuscaColunaEspecificaFirebase(dados, "id", "foto", 87220752) +
+                    ' alt="">' +
+                    '<div class="details">' +
+                    "<span>" +
+                    BuscaColunaEspecificaFirebase(dados, "id", "nome", 87220752) +
+                    " " +
+                    BuscaColunaEspecificaFirebase(
+                      dados,
+                      "id",
+                      "sobrenome",
+                      87220752
+                    ) +
+                    "</span>" +
+                    "<p>" +
+                    voce +
+                    mensagemAmostra +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</a>";
+    
+                  document.querySelector(".users-list").innerHTML = retornoHTML;
+                } else if (idUsuarioLogado == mensagem.idMensagemEnviada) {
+                  retornoHTML =
+                    '<a href="chat.html?user_id=' +
+                    mensagem.idMensagemRecebida +
+                    '">' +
+                    '<div class="content">' +
+                    "<img src=" +
+                    BuscaColunaEspecificaFirebase(
+                      dados,
+                      "id",
+                      "foto",
+                      mensagem.idMensagemRecebida
+                    ) +
+                    ' alt="">' +
+                    '<div class="details">' +
+                    "<span>" +
+                    BuscaColunaEspecificaFirebase(
+                      dados,
+                      "id",
+                      "nome",
+                      mensagem.idMensagemRecebida
+                    ) +
+                    " " +
+                    BuscaColunaEspecificaFirebase(
+                      dados,
+                      "id",
+                      "sobrenome",
+                      mensagem.idMensagemRecebida
+                    ) +
+                    "</span>" +
+                    "<p>" +
+                    voce +
+                    mensagemAmostra +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</a>";
+    
+                  document.querySelector(".users-list").innerHTML = retornoHTML;
+                } else if (idUsuarioLogado == mensagem.idMensagemRecebida) {
+                  retornoHTML =
+                    '<a href="chat.html?user_id=' +
+                    mensagem.idMensagemEnviada +
+                    '">' +
+                    '<div class="content">' +
+                    "<img src=" +
+                    BuscaColunaEspecificaFirebase(
+                      dados,
+                      "id",
+                      "foto",
+                      mensagem.idMensagemEnviada
+                    ) +
+                    ' alt="">' +
+                    '<div class="details">' +
+                    "<span>" +
+                    BuscaColunaEspecificaFirebase(
+                      dados,
+                      "id",
+                      "nome",
+                      mensagem.idMensagemEnviada
+                    ) +
+                    " " +
+                    BuscaColunaEspecificaFirebase(
+                      dados,
+                      "id",
+                      "sobrenome",
+                      mensagem.idMensagemEnviada
+                    ) +
+                    "</span>" +
+                    "<p>" +
+                    voce +
+                    mensagemAmostra +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</a>";
+    
+                  document.querySelector(".users-list").innerHTML = retornoHTML;
+                }
+                
               }
 
-              if (
-                BuscaColunaEspecificaFirebase(
-                  dados,
-                  "id",
-                  "status",
-                  mensagem.idMensagemEnviada
-                ) == "Offline"
-              ) {
-                offline = "offline";
-              } else {
-                offline = "";
-              }
-
-              if (idMensagemEnviada === idUsuarioLogado) {
-                hide_me = "hide";
-              } else {
-                hide_me = "";
-              }
             });
-            retornoHTML =
-              '<a href="chat.php?user_id=' +
-              idMensagemEnviada +
-              '">' +
-              '<div class="content">' +
-              "<img src=" +
-              BuscaColunaEspecificaFirebase(
-                dados,
-                "id",
-                "foto",
-                idMensagemEnviada
-              ) +
-              ' alt="">' +
-              '<div class="details">' +
-              "<span>" +
-              BuscaColunaEspecificaFirebase(
-                dados,
-                "id",
-                "nome",
-                idMensagemEnviada
-              ) +
-              " " +
-              BuscaColunaEspecificaFirebase(
-                dados,
-                "id",
-                "sobrenome",
-                idMensagemEnviada
-              ) +
-              "</span>" +
-              "<p>" +
-              voce +
-              mensagemAmostra +
-              "</p>" +
-              "</div>" +
-              "</div>" +
-              '<div class="' +
-              "status-dot " +
-              (BuscaColunaEspecificaFirebase(
-                dados,
-                "id",
-                "status",
-                idMensagemEnviada
-              )
-                ? "Online"
-                : ""
-                ? "Offline"
-                : "offline") +
-              '">' +
-              '<i class="fas fa-circle"></i></div>' +
-              "</a>";
 
-            document.querySelector(".users-list").innerHTML = retornoHTML;
           }
         });
       }
@@ -314,30 +377,33 @@ const logoutBtn = document.getElementById("logout");
 logoutBtn.addEventListener("click", Logout);
 
 async function Logout(event) {
-    event.preventDefault();
-  
-    let idLogout = localStorage.getItem("idUsuario");
-  
-    if (idLogout) {
-      let status = "Offline";
-      let chaveUsuario = await ObtemChaveUsuarioFirebase(idLogout);
-  
-      if (chaveUsuario) {
-        // Atualiza o status do usuário no Firebase
-        const usuarioRef = usersRef.child(chaveUsuario);
-        usuarioRef.update({ status: status });
-  
-        // Removendo uma sessão específica do localStorage
-        localStorage.removeItem("idUsuario");
-  
-        // Redireciona o usuário para a página de login
-        window.location.href = "login.html";
-      } else {
-        console.error("Chave de usuário inválida");
-      }
-    } else {
-      // Redireciona o usuário para a página de chats
-      window.location.href = "chats.html";
-    }
+  event.preventDefault();
+
+  let idLogout = localStorage.getItem("idUsuario");
+
+  if (idLogout) {
+    let status = "Offline";
+    // let chaveUsuario = await ObtemChaveUsuarioFirebase(idLogout);
+
+    // if (chaveUsuario) {
+    //   // Atualiza o status do usuário no Firebase
+    //   const usuarioRef = usersRef.child(chaveUsuario);
+    //   usuarioRef.update({ status: status });
+
+    //   // Removendo uma sessão específica do localStorage
+    //   localStorage.removeItem("idUsuario");
+
+    //   // Redireciona o usuário para a página de login
+    //   window.location.href = "login.html";
+    // } else {
+    //   console.error("Chave de usuário inválida");
+    // }
+
+    // Removendo uma sessão específica do localStorage
+    localStorage.removeItem("idUsuario");
+    window.location.href = "login.html";
+  } else {
+    // Redireciona o usuário para a página de chats
+    window.location.href = "chats.html";
   }
-  
+}
