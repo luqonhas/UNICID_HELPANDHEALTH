@@ -1,0 +1,61 @@
+<!-- PÁGINA DAS CONVERSAS (CHATS) -->
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Help&Health</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <script src="utils/verification.js" defer></script>
+
+    <div class="wrapper">
+      <section class="users">
+        <!-- Onde está o nome, a foto, o status e o botão de deslogar -->
+        <header>
+          <div class="content">
+            <!-- Coloca a foto a partir do nome da foto que está no banco de dados e busca na pasta dentro do Wamp -->
+            <img src="./images/pacientes.svg" alt="Imagem do usuário" id="user-photo" />
+
+            <div class="details">
+              <!-- Coloca o nome do usuário + o sobrenome -->
+              <span id="user-name"></span>
+              <!-- Coloca o status do usuário naquele momento -->
+              <p id="user-status"></p>
+            </div>
+          </div>
+
+          <!-- Botão para deslogar do sistema -->
+          <!-- adicionar a function de logout enviando -->
+          <a href="#" class="logout" id="logout">Logout</a>
+        </header>
+
+        <!-- Barra de pesquisa de usuários -->
+        <div class="search">
+          <input type="text" placeholder="Digite..." />
+          <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <!-- Campo no qual ficará todos as conversas desse usuário -->
+        <div class="users-list">
+          <!-- Aqui dentro será preenchido pelo JavaScript -->
+          <p id="empty-user-list-message"></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Função JS que faz com que o Firebase funcione -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <!-- Função JS que preenche o campo de conversas -->
+    <script src="javascript/chats.js"></script>
+  </body>
+</html>

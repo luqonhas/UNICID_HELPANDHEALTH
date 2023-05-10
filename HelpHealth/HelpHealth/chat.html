@@ -1,0 +1,58 @@
+<!-- PÁGINA DA CONVERSA (CHAT) -->
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Help&Health</title>
+  <link rel="stylesheet" href="styles/chats.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+</head>
+
+<body>
+  <script src="utils/verification.js" defer></script>
+
+  <div class="wrapper">
+    <section class="chat-area">
+
+      <!-- Onde está o botão de voltar para todas as conversas, o nome, a foto e o status -->
+      <header>
+        <!-- Botão de voltar para a tela de Conversas (Chats) -->
+        <a href="formulario.html" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+
+        <!-- Foto de perfil do usuário da conversa -->
+        <img src="./images/pacientes.svg" id="user-photo" alt="Imagem do usuário">
+
+        <div class="details">
+          <!-- Nome + sobrenome do usuário da conversa -->
+          <span id="user-name"></span>
+        </div>
+      </header>
+
+      <!-- Campo no qual ficará toda a conversa do usuário logado com o usuário da conversa -->
+      <div class="chat-box">
+        <!-- Aqui dentro será preenchido pelo JavaScript -->
+      </div>
+
+      <!-- Input no qual é utilizado para digitar o que você quer enviar para o outro usuário -->
+      <form action="#" class="typing-area">
+        <!-- <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden> -->
+        <input type="text" class="incoming_id" name="incoming_id" hidden>
+        <input type="text" id="message" class="input-field" placeholder="Mensagem..." autocomplete="off">
+        <input type="button" id="sendBtn" style="cursor: pointer; background-color: #797EE6; width: 20%;" value="Enviar"></button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Função JS que faz com que o Firebase funcione -->
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <!-- Função JS que preenche o campo de conversa -->
+  <script src="javascript/chat.js"></script>
+
+</body>
+
+</html>

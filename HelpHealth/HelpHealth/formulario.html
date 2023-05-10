@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <link rel="stylesheet" href="styles/chats.css">
+    <link rel="stylesheet" href="styles/formulario.css">
+</head>
+<header>
+    <img src="img/help&health V5.png" class="logohelp">
+    <!-- <img src="img/Group 24.png" class="agenda">
+    <img src="img/Group 23.png" class="calendario">
+    <img src="img/Group 21.png" class="chat"> -->
+    <img src="img/Group 22.png" class="sair" id="logout">
+
+</header>
+<script src="javascript/usuario.js"></script>
+<body>
+    <div class="retangulo">
+        <div class="bem-vindo">
+            <h1>Bem Vindo...</h1>
+            <p>Lembre-se de atualizar o formulario sempre que for realizar um novo atendimento!</p>
+        </div>
+    </div>
+    <img src="img/Group 25.png" class="agenda2" id="imagem">
+    
+    
+    <form action="#" method="get" id="myForm">
+        <h2>Formulário</h2>
+        <label for="pgt1">Como está sendo a sua semana?</label><br>
+        <input type="text" id="pgt1" class="pgt-input"><br><br>
+        <label for="pgt2">Voce ja procurou ajuda profissonal antes ? Se sim, como foi a experiencia ?</label><br>
+        <input type="text" id="pgt2" class="pgt-input"><br><br>
+        <label for="pgt3">Voce esta atualmente tomando algum medicamento ou recebeu algum tratamento medico relacionado a sua saude mental ?
+        </label><br>
+        <input type="text" id="pgt3" class="pgt-input"><br><br>
+        <label for="pgt4">Voce tem algum historico de doencas mentais na familia ?</label><br>
+        <input type="text" id="pgt4" class="pgt-input"><br><br>
+        <label for="pgt5">Como voce tem se sentido emocionalmente nas ultimas semanas ?</label><br>
+        <input type="text" id="pgt5" class="pgt-input"><br><br>
+        <label for="pgt6">Voce ja teve algum pensamento suicida ou comportamento autolesivo ?</label><br>
+        <input type="text" id="pgt6" class="pgt-input"><br><br>
+        <label for="pgt7">Voce esta enfrentando algum evento estressante ou traumatico no momento ?
+        </label><br>
+        <input type="text" id="pgt7" class="pgt-input"><br><br>
+        <label for="pgt8">Voce tem dificuldades em realizar suas atividades diarias devido ao seu estado emocional ?</label><br>
+        <input type="text" id="pgt8" class="pgt-input"><br><br>
+        <label for="pgt9">Qual e a sua principal expectativa em relacao a terapia ?</label><br>
+        <input type="text" id="pgt9" class="pgt-input"><br><br>
+        <label for="pgt10">Existe alguma informacao adicional que voce acha importante compartilhar antes da consulta?</label><br>
+        <input type="text" id="pgt10" class="pgt-input"><br><br>
+        <button class="btn-form" onclick="submitForm()">Enviar</button>
+    </form>
+    
+    <div class="wrapper">
+      <section class="users">
+        <!-- Onde está o nome, a foto, o status e o botão de deslogar -->
+        <header>
+          <div class="content">
+            <!-- Coloca a foto a partir do nome da foto que está no banco de dados e busca na pasta dentro do Wamp -->
+            <img src="./images/pacientes.svg" alt="Imagem do usuário" id="user-photo" />
+
+            <div class="details">
+              <!-- Coloca o nome do usuário + o sobrenome -->
+              <span id="user-name"></span>
+              <!-- Coloca o status do usuário naquele momento -->
+              <p id="user-status"></p>
+            </div>
+          </div>
+
+          <!-- Botão para deslogar do sistema -->
+          <!-- adicionar a function de logout enviando -->
+          <!-- <a href="#" class="logout" id="logout">Logout</a> -->
+        </header>
+
+        <!-- Campo no qual ficará todos as conversas desse usuário -->
+        <div class="users-list">
+          <!-- Aqui dentro será preenchido pelo JavaScript -->
+          <p id="empty-user-list-message"></p>
+        </div>
+      </section>
+    </div>
+      
+        </section>
+      </div>
+      <div class="wrapper2" id="myDate">
+        <h3>Data consulta</h2>
+          <input type="date" id="dta_consulta" >
+          <input type="time" id="horario" >
+          <button class="btn-form2" onclick="submitDate()">Enviar</button>
+      </div>
+    <script>
+        function submitForm() {
+            event.preventDefault();
+  const form = document.getElementById("myForm");
+  const inputs = form.getElementsByTagName("input");
+  const labels = form.getElementsByTagName("label");
+  // Oculta todos os inputs do formulário
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].style.display = "none";
+  }
+  // Oculta todos os labels do formulário
+  for (let i = 0; i < labels.length; i++) {
+    labels[i].style.display = "none";
+  }
+
+  // Adiciona o item contendo a data de preenchimento
+  const date = new Date().toLocaleDateString();
+  const dataItem = document.createElement("p");
+  const dataText = document.createTextNode(`Data do preenchimento: ${date}`);
+  dataItem.appendChild(dataText);
+  dataItem.style.position = "absolute";
+  dataItem.style.top = "50%";
+  dataItem.style.left = "50%";
+  dataItem.style.transform = "translate(-50%, -50%)";
+  dataItem.style.color = "black";
+  dataItem.style.fontFamily = "Quicksand";
+  form.appendChild(dataItem);
+
+  //esconde o retangulo
+  const retangulo = document.querySelector(".retangulo");
+  retangulo.style.display = "none";
+
+  const button = document.querySelector(".btn-form");
+  button.style.display = "none";
+
+  const dataconsulta = document.querySelector(".wrapper2");
+  dataconsulta.style.opacity = "1";
+  dataconsulta.style.transition = "2s";
+  // Mostra o wrapper
+  //const wrapper = document.querySelector(".wrapper");
+  //wrapper.style.opacity = "1";
+  //form.style.transition = "2s";
+
+  // Oculta a imagem com a classe "agenda2"
+  const imagem = document.querySelector(".agenda2");
+  //Altera o nome H2 
+  document.querySelector("h2").textContent = "Formulário Preenchido";
+  //Esconde a img agenda2
+  imagem.style.display = "none";
+  // Aplica as alterações de estilo desejadas no formulário
+  form.style.position = "absolute";
+  form.style.width = "507px";
+  form.style.height = "190px";
+  form.style.left = "410px";
+  form.style.top = "150px";
+  form.style.background = "#FBF9FF";
+  form.style.boxShadow = "0px 0px 15px rgba(0, 0, 0, 0.25)";
+  form.style.borderRadius = "19px";
+  form.style.transition = "3s";
+
+  return false;
+}
+function submitDate(){
+    event.preventDefault();
+    const form = document.getElementById("myForm");
+    const wrapper2 = document.getElementById("myDate");
+     // Pegando o valor do input de data e horário
+    const dataConsulta = document.getElementById("dta_consulta").value;
+    const horarioConsulta = document.getElementById("horario").value;
+    const inputs = wrapper2.getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+    inputs[i].style.display = "none";
+  }
+  // Criando um novo elemento p para mostrar a informação da consulta
+    const novaConsulta = document.createElement("p");
+    // novaConsulta.innerText = "Data da consulta: " + dataConsulta + " às " + horarioConsulta;
+    
+    novaConsulta.style.position = "absolute";
+    novaConsulta.style.top = "50%";
+    novaConsulta.style.left = "50%";
+    novaConsulta.style.transform = "translate(-50%, -50%)";
+    novaConsulta.style.color = "black";
+    novaConsulta.style.fontFamily = "Quicksand";
+      // Adicionando o novo elemento p à div wrapper2
+      
+      wrapper2.appendChild(novaConsulta);
+  // Criando um novo elemento p para mostrar o status da consulta
+    const statusConsulta = document.createElement("p");
+    statusConsulta.innerText = "Status da Consulta: Pendente";
+    wrapper2.appendChild(statusConsulta);
+    statusConsulta.style.position = "absolute";
+    statusConsulta.style.top = "50%";
+    statusConsulta.style.left = "50%";
+    statusConsulta.style.transform = "translate(-50%, -50%)";
+    statusConsulta.style.color = "black";
+    statusConsulta.style.fontFamily = "Quicksand";
+    statusConsulta.style.marginTop = "50px";
+    wrapper2.style.height = "180px";
+    wrapper2.style.left = "1050px";
+    wrapper2.style.top = "250px";
+  // Escondendo o botão de enviar
+    const btnEnviar = document.querySelector(".btn-form2");
+    btnEnviar.style.opacity = "0";
+    //Mostra o wrapper
+  const wrapper = document.querySelector(".wrapper");
+  wrapper.style.opacity = "1";
+  form.style.transition = "2s";
+      form.style.left = "100px";
+      return false;
+  }
+        </script>
+        <script src="javascript/users.js"></script>
+        <!-- Função JS que faz com que o Firebase funcione -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <!-- Função JS que faz o login do usuário -->
+    <script src="utils/firebase.js"></script>
+            <!-- Função JS que faz o cadastro do usuário -->
+    <script src="javascript/chats.js"></script>
+
+</body>

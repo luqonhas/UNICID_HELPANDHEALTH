@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help&Health</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+</head>
+<body>
+    <script src="javascript/modal.js" defer></script>
+    <script src="utils/verification.js" defer></script>
+    <nav>
+        <img src="img/help&health V3.png" class="logo">
+        <p>Help<br>&<br>Health</p>
+        <div class="navbutton">
+            <button id="open-modal" class="login">Login</button>
+            <button id="open-modal2" class="cadastro">Cadastro</button>
+        </div>   
+        <div id="fade" class="hide"></div>
+        <div id="modal" class="hide">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <button id="close-modal">Fechar</button>
+            </div>
+            <div class="modal-body">
+                <label for="nome">E-mail:</label><br>
+                <input type="email" id="email" placeholder="Digite o seu nome..." class="inputllogin" id="email" ><br><br>
+                <label for="nome">Senha:</label><br>
+                <input type="password" id="password" placeholder="Digite a sua senha..." class="inputllogin" id="senha"><br><br>
+                <input id="btnLogin" type="button" value="Logar" class="botaologin">
+            </div>
+        </div>
+
+        <div id="fade2" class="hide"></div>
+
+        <div id="modal2" class="hide">
+            <div class="modal-header">
+                <h2>Cadastro</h2>
+                <button id="close-modal2">Fechar</button>
+            </div>
+            <div class="modal-body2">
+                <label for="nome">Nome:</label><br>
+                <input id="fname" type="text" placeholder="Digite o seu nome..." class="inputllogin" id="nome" name="nome"><br><br>
+                <label for="Sobrenome">Sobrenome:</label><br>
+                <input id="lname" type="text" placeholder="Digite o seu sobrenome..." class="inputllogin" id="sobrenome" name="sobrenome"><br><br>
+                <label for="nome">E-mail:</label><br>
+                <input id="emailC" type="email" placeholder="Digite o seu e-mail..." class="inputllogin" id="email"><br><br>
+                <label for="senha">Senha:</label><br>
+                <input id="passwordC" type="password" placeholder="Digite a sua senha..." class="inputllogin" id="senha"><br><br>
+                <label for="dta_nasc">Data de Nascimento:</label><br>
+                <input type="date" class="inputllogin" id="dta_nasc"><br><br>
+                <label for="genero">Genero</label><br>
+                <form>
+                    <input type="radio" name="genero" value="M" class="">Masculino
+                    <input type="radio" name="genero" value="F" class="">Feminino
+                </form>
+
+                <INPUT TYPE="checkbox" NAME="OPCAO" VALUE="op1">Termos e Condições<br>
+
+                <input id="btnCadastro" type="button" value="Cadastrar" class="botaologin">
+                
+            </div>
+        </div>
+    </nav>
+    <div class="card1">
+        <img src="img/2.png">
+    </div>
+    <div class="texto1">
+        <h3>Sobre nós</h3><br>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+    </div>
+    <img src="img/Vector (1).png" class="linha-ondulada"></img>
+    <div class="card2">
+        <img src="img/2.png">
+    </div>
+    <div class="texto2">
+        <h3>Sobre nós</h3><br>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+    </div>
+    <div class="equipe"><!-- inicio classe equipe--> 
+        <P class="eq">Equipe</P>
+
+        <div class="fotos">
+        <div class="perfil">
+            <img src="img/GI.jpeg">
+            <div class="area">
+                <p>Giovanna Araújo</p>
+                <p>Designer</p>
+            </div>
+        </div>
+        
+        <div class="perfil">
+            <img src="img/BRUNO.jpeg">
+            <div class="area">
+                <p>Bruno Reis</p>
+                <p>Designer</p>
+            </div>
+        </div>
+        
+        <div class="perfil">
+            <img src="img/YUGUI.jpeg">
+            <div class="area">
+                <p>Lucas Yugui</p>
+                <p>Designer</p>
+            </div>
+        </div>
+        <div class="perfil">
+            <img src="img/Minoru.jpeg">
+            <div class="area">
+                <p>Paulo Minoru</p>
+                <p>Designer</p>
+            </div>
+        </div>
+        <div class="perfil">
+            <img src="img/APOLI.jpeg">
+            <div class="area">
+                <p>Lucas Apolinário</p>
+                <p>Back-End</p>
+            </div>
+        </div>
+        <div class="perfil">
+            <img src="img/IGUINHO.jpeg">
+            <div class="area">
+                <p>Igor Souza</p>
+                <p>Back-End</p>
+            </div>
+        </div>
+        <div class="perfil">
+            <img src="img/RAFA.jpeg">
+            <div class="area">
+                <p>Rafael Alves</p>
+                <p>Back-End</p>
+            </div>
+        </div>
+        <div class="perfil">
+            <img src="img/FAGNER.jpeg">
+            <div class="area">
+                <p>Fagner Diniz</p>
+                <p>Back-End</p>
+            </div>
+        </div>
+        <div class="perfil">
+            <img src="img/Luana.jpeg">
+            <div class="area">
+                <p>Luana Silva</p>
+                <p>Back-End</p>
+            </div>
+        </div>
+        <div class="perfil">
+            <img src="img/ZAVATTI.jpeg">
+            <div class="area">
+                <p>Johnnie Machado</p>
+                <p>Front-End</p>
+            </div>
+        </div> 
+        <div class="perfil">
+            <img src="img/GU.jpeg">
+            <div class="area">
+                <p>Gustavo Santos</p>
+                <p>Front-End</p>
+            </div>
+        </div> 
+        <div class="perfil">
+            <img src="img/LUCAS.jpeg">
+            <div class="area">
+                <p>Lucas Silva</p>
+                <p>Front-End</p>
+            </div>
+        </div> 
+        <div class="perfil">
+            <img src="img/cinthia.jpeg">
+            <div class="area">
+                <p>Cinthia Cunha</p>
+                <p>Front-End</p>
+            </div>
+        </div> 
+    </div>
+
+    <!-- Função JS que faz com que o Firebase funcione -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <!-- Função JS que faz com que o MD5 (criptografia de senha) funcione -->
+    <script src="utils/md5.min.js"></script>
+    <!-- Função JS que faz o login do usuário -->
+    <script src="utils/firebase.js"></script>
+    <script src="javascript/login.js"></script>
+    <!-- Função JS que faz o cadastro do usuário -->
+    <script src="javascript/cadastro.js"></script>
+</body>
+</html>
